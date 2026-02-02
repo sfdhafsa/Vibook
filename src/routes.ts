@@ -8,7 +8,7 @@ const routes = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
-      { path: "/Home", Component: Home },
+      { path: "/", Component: Home },
       { path: "/Search", Component: Search},
     ],
   },

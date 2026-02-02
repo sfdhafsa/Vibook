@@ -11,7 +11,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <RouterProvider router={routes} />
-      </QueryClientProvider>
+    </QueryClientProvider>
 
   );
 }
