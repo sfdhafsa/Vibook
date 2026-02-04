@@ -1,16 +1,27 @@
+import { NavLink } from 'react-router';
 
-import {NavLink} from 'react-router';
+const NavBar = () => {
+  return (
+    <nav className="flex items-center gap-3">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `flex items-center justify-center p-2 rounded transition ${isActive ? 'bg-blue-100' : 'hover:bg-gray-100'}`
+        }
+      >
+        <img src="/home.png" alt="Home" className="w-9 h-9 object-contain" />
+      </NavLink>
 
-const NavBar=()=>{
-    return(
+      <NavLink
+        to="/search"
+        className={({ isActive }) =>
+          `flex items-center justify-center p-2 rounded transition ${isActive ? 'bg-blue-100' : 'hover:bg-gray-100'}`
+        }
+      >
+        <img src="/searchBook.jpg" alt="Search" className="w-6 h-6 object-contain" />
+      </NavLink>
+    </nav>
+  );
+};
 
-        <div>
-          <NavLink to="/"> Home </NavLink>
-          <NavLink to="/Search"> Search </NavLink>
-          
-        </div>
-
-    );
-
-}
 export default NavBar;
