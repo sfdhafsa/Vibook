@@ -1,15 +1,49 @@
-const SearchBar = () => {
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
+interface SearchBarProps {
+  query?: string;
+  setQuery?: (q: string) => void;
+  onSearch?: (q: string) => void;
+}
+
+function SearchBar({
+  query: propQuery,
+  setQuery: propSetQuery,
+  onSearch: propOnSearch,
+}: SearchBarProps) {
+  const [internalQuery, setInternalQuery] = useState("");
+  const navigate = useNavigate();
+
+  const query = propQuery ?? internalQuery;
+  const setQuery = propSetQuery ?? setInternalQuery;
+
+  const handleSearch = () => {
+    if (!query || query.trim().length < 2) return;
+
+    if (propOnSearch) {
+      // controlled mode
+      propOnSearch(query.trim());
+    } else {
+      // uncontrolled mode: navigate to search page
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   return (
-    <div className="flex items-center gap-2 p-4 md:p-8 lg:p-20 m-4 md:m-8 lg:m-20 w-full max-w-2xl mx-auto">
+    <div className="flex items-center gap-3 py-6 md:py-8 lg:py-10 px-4 md:px-6 lg:px-8 w-full max-w-2xl mx-auto">
       <input
         type="text"
         placeholder="Search"
-        className="flex-1 min-w-0 w-full p-2 md:p-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 
-        focus:outline-none text-sm md:text-base"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        className="flex-1 min-w-0 w-full p-3 md:p-4 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-sm md:text-base"
       />
       <button
         type="button"
-        className="flex-shrink-0 p-2 md:p-3 text-black hover:opacity-70 transition-opacity"
+        onClick={handleSearch}
+        className="flex-shrink-0 p-3 md:p-4 text-black hover:opacity-70 transition-opacity"
         aria-label="Search"
       >
         <svg
@@ -28,6 +62,6 @@ const SearchBar = () => {
       </button>
     </div>
   );
-};
+}
 
 export default SearchBar;

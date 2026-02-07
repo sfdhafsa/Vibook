@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 // src/api/openLibraryApi.ts
 // Centralized Open Library API client.
 // All HTTP calls related to Open Library should stay here.
@@ -160,12 +161,36 @@ export async function searchBooks(
   // Keep UI responsive + avoid abuse
   const safeLimit = clampNumber(limit, 1, 100);
 
-  const url = new URL(`${OPEN_LIBRARY_BASE_URL}/search.json`);
-  url.searchParams.set("q", q);
-  url.searchParams.set("page", String(page));
-  url.searchParams.set("limit", String(safeLimit));
+  const url = `${OPEN_LIBRARY_BASE_URL}/search.json`;
+  const paramsObj = {
+    q,
+    page: String(page),
+    limit: String(safeLimit),
+  };
 
-  return fetchJson<OpenLibrarySearchResponse>(url.toString());
+  try {
+    const response = await axios.get<OpenLibrarySearchResponse>(url, { params: paramsObj });
+    // Defensive: ensure docs is always an array
+    if (!response.data || !Array.isArray(response.data.docs)) {
+      throw new Error("Malformed response from Open Library API.");
+    }
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const err = error as AxiosError;
+      if (err.response) {
+        throw new Error(`OpenLibrary API error (${err.response.status}): ${err.response.statusText}`);
+      } else if (err.request) {
+        throw new Error("No response received from Open Library API.");
+      } else {
+        throw new Error(`Axios error: ${err.message}`);
+      }
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error("Unknown error occurred during book search.");
+    }
+  }
 }
 
 /**
