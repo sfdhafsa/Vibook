@@ -49,7 +49,6 @@ export function useHandleSearch(options?: UseHandleSearchOptions) {
       setQuery(searchQuery);
     } catch (e: unknown) {
       // Debug log for browser console
-      // eslint-disable-next-line no-console
       console.error('Search error:', e);
       if (e instanceof Error) {
         setError(e.message);

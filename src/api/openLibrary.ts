@@ -80,9 +80,20 @@ export type OpenLibraryRecentChange = {
   kind: string;
   timestamp: string;
   comment?: string;
-  author?: { key: string };
+
+  author?: {
+    key: string;
+    name?: string;
+  };
+
+  data?: {
+    key?: string;   // ex: "/works/OL45883W"
+    title?: string; // parfois présent
+  };
+
   changes?: unknown[];
 };
+
 
 /** Cover sizes supported by Open Library */
 export type CoverSize = "S" | "M" | "L";
@@ -336,3 +347,6 @@ export function getFirstAuthorKey(work: OpenLibraryWorkDetails): string | null {
   const key = work.authors?.[0]?.author?.key;
   return key && key.startsWith("/authors/") ? key : null;
 }
+
+
+
