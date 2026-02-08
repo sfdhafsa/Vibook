@@ -31,19 +31,19 @@ function SearchBar({
   };
 
   return (
-    <div className="flex items-center gap-3 py-6 md:py-8 lg:py-10 px-4 md:px-6 lg:px-8 w-full max-w-2xl mx-auto">
+    <div className="flex items-center gap-3 py-8 md:py-10 lg:py-12 px-6 md:px-8 lg:px-10 w-full max-w-2xl mx-auto">
       <input
         type="text"
         placeholder="Search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        className="flex-1 min-w-0 w-full p-3 md:p-4 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-sm md:text-base"
+        className="flex-1 min-w-0 w-full p-4 md:p-5 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-sm md:text-base"
       />
       <button
         type="button"
         onClick={handleSearch}
-        className="flex-shrink-0 p-3 md:p-4 text-black hover:opacity-70 transition-opacity"
+        className="flex-shrink-0 p-4 md:p-5 text-black hover:opacity-70 transition-opacity"
         aria-label="Search"
       >
         <svg
