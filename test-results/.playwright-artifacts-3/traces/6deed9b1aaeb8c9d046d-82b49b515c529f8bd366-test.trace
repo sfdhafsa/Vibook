@@ -1,0 +1,20 @@
+{"version":8,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.58.2","options":{},"platform":"win32","wallTime":1770578610917,"monotonicTime":28049.808,"sdkLanguage":"javascript"}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":28070.19,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@31","stepId":"fixture@31","parentId":"hook@1","startTime":28095.412,"class":"Test","method":"fixture","title":"Fixture \"browser\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@32","stepId":"pw:api@32","parentId":"fixture@31","startTime":28106.522,"class":"Test","method":"pw:api","title":"Launch browser","params":{"handleSIGINT":"false","tracesDir":"C:\\projects\\Vibook\\test-results\\.playwright-artifacts-3\\traces","headless":"true","ignoreDefaultArgs":"undefined","ignoreAllDefaultArgs":"false","env":"undefined","timeout":"180000"},"stack":[]}
+{"type":"after","callId":"pw:api@32","endTime":28266.191,"annotations":[]}
+{"type":"after","callId":"fixture@31","endTime":28266.629,"annotations":[]}
+{"type":"before","callId":"fixture@35","stepId":"fixture@35","parentId":"hook@1","startTime":28269.34,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@36","stepId":"pw:api@36","parentId":"fixture@35","startTime":28273.223,"class":"Test","method":"pw:api","title":"Create context","params":{"selectorEngines":"[]","testIdAttributeName":"data-testid","acceptDownloads":"accept","bypassCSP":"false","colorScheme":"light","hasTouch":"false","ignoreHTTPSErrors":"false","isMobile":"false","javaScriptEnabled":"true","locale":"en-US","offline":"false","viewport":"Object","baseURL":"http://localhost:5173","serviceWorkers":"allow","noDefaultViewport":"false","extraHTTPHeaders":"undefined","storageState":"undefined","reducedMotion":"undefined","forcedColors":"undefined","contrast":"undefined","clientCertificates":"undefined"},"stack":[]}
+{"type":"after","callId":"pw:api@36","endTime":28292.511,"annotations":[]}
+{"type":"after","callId":"fixture@35","endTime":28301.247,"annotations":[]}
+{"type":"before","callId":"fixture@37","stepId":"fixture@37","parentId":"hook@1","startTime":28303.974,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@38","stepId":"pw:api@38","parentId":"fixture@37","startTime":28308.346,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@38","endTime":28580.712,"annotations":[]}
+{"type":"after","callId":"fixture@37","endTime":28581.038,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":28581.15,"annotations":[]}
+{"type":"before","callId":"pw:api@39","stepId":"pw:api@39","startTime":28615.532,"class":"Test","method":"pw:api","title":"Route requests","params":{"patterns":"[Object]"},"stack":[{"file":"C:\\projects\\Vibook\\tests\\mocks\\openlibrary.ts","line":104,"column":14,"function":"mockWorkDetails"}],"group":"route"}
+{"type":"after","callId":"pw:api@39","endTime":28633.966,"annotations":[]}
+{"type":"before","callId":"pw:api@40","stepId":"pw:api@40","startTime":28638.866,"class":"Test","method":"pw:api","title":"Route requests","params":{"patterns":"[Object, Object]"},"stack":[{"file":"C:\\projects\\Vibook\\tests\\mocks\\openlibrary.ts","line":120,"column":14,"function":"mockWorkDetails"}],"group":"route"}
+{"type":"after","callId":"pw:api@40","endTime":28641.953,"annotations":[]}
+{"type":"before","callId":"pw:api@41","stepId":"pw:api@41","startTime":28646.156,"class":"Test","method":"pw:api","title":"Navigate to \"/book/OL1W\"","params":{"url":"/book/OL1W","waitUntil":"load","timeout":"0"},"stack":[{"file":"C:\\projects\\Vibook\\tests\\bookdetails.spec.ts","line":8,"column":14}]}

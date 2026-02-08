@@ -1,0 +1,18 @@
+{"version":8,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.58.2","options":{},"platform":"win32","wallTime":1770578610969,"monotonicTime":28101.819,"sdkLanguage":"javascript"}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":28112.661,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@31","stepId":"fixture@31","parentId":"hook@1","startTime":28137.302,"class":"Test","method":"fixture","title":"Fixture \"browser\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@32","stepId":"pw:api@32","parentId":"fixture@31","startTime":28146.948,"class":"Test","method":"pw:api","title":"Launch browser","params":{"handleSIGINT":"false","tracesDir":"C:\\projects\\Vibook\\test-results\\.playwright-artifacts-5\\traces","headless":"true","ignoreDefaultArgs":"undefined","ignoreAllDefaultArgs":"false","env":"undefined","timeout":"180000"},"stack":[]}
+{"type":"after","callId":"pw:api@32","endTime":28328.463,"annotations":[]}
+{"type":"after","callId":"fixture@31","endTime":28329.127,"annotations":[]}
+{"type":"before","callId":"fixture@35","stepId":"fixture@35","parentId":"hook@1","startTime":28331.757,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@36","stepId":"pw:api@36","parentId":"fixture@35","startTime":28335.965,"class":"Test","method":"pw:api","title":"Create context","params":{"selectorEngines":"[]","testIdAttributeName":"data-testid","acceptDownloads":"accept","bypassCSP":"false","colorScheme":"light","hasTouch":"false","ignoreHTTPSErrors":"false","isMobile":"false","javaScriptEnabled":"true","locale":"en-US","offline":"false","viewport":"Object","baseURL":"http://localhost:5173","serviceWorkers":"allow","noDefaultViewport":"false","extraHTTPHeaders":"undefined","storageState":"undefined","reducedMotion":"undefined","forcedColors":"undefined","contrast":"undefined","clientCertificates":"undefined"},"stack":[]}
+{"type":"after","callId":"pw:api@36","endTime":28354.231,"annotations":[]}
+{"type":"after","callId":"fixture@35","endTime":28363.978,"annotations":[]}
+{"type":"before","callId":"fixture@37","stepId":"fixture@37","parentId":"hook@1","startTime":28365.297,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@38","stepId":"pw:api@38","parentId":"fixture@37","startTime":28368.295,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@38","endTime":28559.906,"annotations":[]}
+{"type":"after","callId":"fixture@37","endTime":28560.215,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":28560.323,"annotations":[]}
+{"type":"before","callId":"pw:api@39","stepId":"pw:api@39","startTime":28570.149,"class":"Test","method":"pw:api","title":"Route requests","params":{"patterns":"[Object]"},"stack":[{"file":"C:\\projects\\Vibook\\tests\\mocks\\openlibrary.ts","line":7,"column":14,"function":"mockSearch"}],"group":"route"}
+{"type":"after","callId":"pw:api@39","endTime":28576.475,"annotations":[]}
+{"type":"before","callId":"pw:api@40","stepId":"pw:api@40","startTime":28580.431,"class":"Test","method":"pw:api","title":"Navigate to \"/search?q=test\"","params":{"url":"/search?q=test","waitUntil":"load","timeout":"0"},"stack":[{"file":"C:\\projects\\Vibook\\tests\\search.spec.ts","line":7,"column":14}]}
