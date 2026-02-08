@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# Library Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a frontend web application for a town library, built using **React**, **TypeScript**, and **Vite**. It connects to the [Open Library API](https://openlibrary.org/developers/api) and optionally fetches additional information from **Wikipedia** to enrich book details.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## React Compiler
+- **React** – for building interactive UI components
+- **TypeScript** – for type safety and better developer experience
+- **Vite** – fast build tool with HMR
+- **Tailwind CSS** – utility-first CSS framework for styling
+- **Playwright** – for end-to-end testing
+- **React Router** – for client-side routing
+- **ESLint & Prettier** – for code quality and formatting
+- **Open Library API** – for book data and recent changes
+- **Wikipedia API** – for author information, descriptions, and critical analyses
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/components` – reusable components such as `SearchBar`, `BookCard`, `RecentChanges`, `Pagination`, and `Loader`
+- `src/pages` – main pages of the application:
+  - **Home** – displays hero banner, search bar, and recent changes
+  - **Search** – advanced search with filters (author, subject, year, language) and suggestions
+  - **BookDetails** – detailed view of a selected book including author info and Wikipedia data
+- `src/hooks` – custom hooks, e.g., `useHandleSearch` and `useSearchSuggestions`
+- `src/api` – API wrapper functions for Open Library and Wikipedia
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Quick Search**
+   - Search visible on all pages
+   - Shows book titles matching the query
+   - Includes real-time suggestions
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Advanced Search**
+   - Filter by author, subject, year, and language
+   - Works with the same search infrastructure
+   - Pagination supported
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Recent Changes**
+   - Displays recent activity from Open Library
+   - Color-coded badges for type of change (edit, new, merge, delete)
+   - Shows author and timestamp
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Book Details Page**
+   - Covers, title, author, publication date, and subjects
+   - Wikipedia data for author and critical analyses
+   - Clean, responsive design
+
+5. **Testing**
+   - End-to-end tests using **Playwright**
+   - Mocked API calls for reliable test results
+
+---
+
+## Installation
+
+```bash
+# Clone repository
+git clone <repository_url>
+cd <project_folder>
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
