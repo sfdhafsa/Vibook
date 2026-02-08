@@ -34,5 +34,5 @@
   },
   "include": [
     "src"
-  ]
+, "tests/test", "tests/search.spec.ts", "tests/mocks", "tests/bookdetails.spec.ts", "tests/home.spec.ts"  ]
 }
