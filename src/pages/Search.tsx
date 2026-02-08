@@ -1,5 +1,4 @@
-// src/pages/Search.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import BookCard from "@/components/BookCard/BookCard";
@@ -7,6 +6,7 @@ import Loader from "@/components/Loader/Loader";
 import Pagination from "@/components/Pagination/Pagination";
 import { getCoverUrlById } from "@/api/openLibrary";
 import { useHandleSearch } from "@/hooks/useHandleSearch";
+import { useSearchSuggestions } from "@/hooks/useSearchSuggestion";
 
 interface Filters {
   author?: string;
@@ -39,7 +39,13 @@ function Search() {
     language: "",
   });
 
-  // Run search when page or initialQuery changes
+  // Suggestions
+  const { suggestions, setSuggestions } = useSearchSuggestions(query);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const suggestionBoxRef = useRef<HTMLDivElement | null>(null);
+
+  // Run search when initialQuery changes
   useEffect(() => {
     if (initialQuery && initialQuery.length >= 2) {
       handleSearch(initialQuery, 1, filters);
@@ -47,25 +53,73 @@ function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuery]);
 
+  // close suggestions on outside click
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (!suggestionBoxRef.current) return;
+      if (!suggestionBoxRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
   const handleFilterSearch = () => {
     setPage(1);
     handleSearch(query, 1, filters);
+    setShowSuggestions(false);
+  };
+
+  const handlePickSuggestion = (title: string) => {
+    setQuery(title);
+    setPage(1);
+    handleSearch(title, 1, filters);
+    setShowSuggestions(false);
+    setSuggestions([]);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* SEARCH SECTION */}
-      <section className="w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-sm">
+      <section className="relative z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-sm">
         <div className="mt-6 flex justify-center max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-8">
-          <div className="w-full max-w-2xl">
-            <SearchBar
-              query={query}
-              setQuery={setQuery}
-              onSearch={(q) => {
-                setPage(1);
-                handleSearch(q, 1, filters);
-              }}
-            />
+          <div className="w-full max-w-2xl" ref={suggestionBoxRef}>
+            {/* SEARCH BAR */}
+            <div className="relative">
+              <SearchBar
+                query={query}
+                setQuery={(val) => {
+                  setQuery(val);
+                  setShowSuggestions(true);
+                }}
+                onSearch={(q) => {
+                  setPage(1);
+                  handleSearch(q, 1, filters);
+                  setShowSuggestions(false);
+                }}
+              />
+
+              {/* SUGGESTIONS */}
+              {showSuggestions && suggestions.length > 0 && (
+                <div className="absolute z-50 mt-2 w-full rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+                  <ul className="max-h-72 overflow-auto">
+                    {suggestions.map((sug) => (
+                      <li key={sug}>
+                        <button
+                          type="button"
+                          onClick={() => handlePickSuggestion(sug)}
+                          className="w-full text-left px-4 py-3 text-sm text-gray-800 hover:bg-blue-50 transition"
+                        >
+                          {sug}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
 
             {/* FILTER PANEL */}
             <div className="mt-4 p-6 md:p-8 bg-white/80 backdrop-blur rounded-xl shadow-sm flex flex-wrap md:flex-nowrap gap-6 items-center">
@@ -134,9 +188,7 @@ function Search() {
                 {filters.year && (
                   <button
                     type="button"
-                    onClick={() =>
-                      setFilters((prev) => ({ ...prev, year: "" }))
-                    }
+                    onClick={() => setFilters((prev) => ({ ...prev, year: "" }))}
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                     ✕
@@ -171,23 +223,21 @@ function Search() {
                 )}
               </div>
 
-              {/* Apply Filters Button */}
+              {/* Apply */}
               <button
                 onClick={handleFilterSearch}
-                className="flex-shrink-0 md:ml-auto min-w-[140px] px-6 py-2
-                 bg-gradient-to-r
-                 from-blue-500 to-blue-600
-                 text-white font-semibold
-                 rounded-lg shadow-md
-                 hover:from-blue-600
-                 hover:to-blue-700
-                 transition-all
-                 duration-200
-                 focus:outline-none
-                 focus:ring-2
-                 focus:ring-blue-400
-                 focus:ring-offset-1
-                 text-sm text-center"
+                className="
+                  flex-shrink-0 md:ml-auto min-w-[140px]
+                  px-6 py-3
+                  bg-gradient-to-r from-blue-600 to-indigo-600
+                  text-white font-semibold
+                  rounded-xl shadow-md
+                  hover:from-blue-700 hover:to-indigo-700
+                  active:scale-[0.98]
+                  transition-all duration-200
+                  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
+                  text-sm text-center
+                "
               >
                 Apply
               </button>
@@ -215,7 +265,6 @@ function Search() {
             </p>
           )}
 
-          {/* GRID */}
           <div className="mt-12 grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {results?.docs.map((book) => (
               <BookCard
@@ -232,7 +281,6 @@ function Search() {
             ))}
           </div>
 
-          {/* PAGINATION */}
           {results && results.numFound > pageSize && (
             <div className="mt-16 flex justify-center">
               <Pagination

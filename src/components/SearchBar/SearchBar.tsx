@@ -31,7 +31,7 @@ function SearchBar({
   };
 
   return (
-    <div className="flex items-center gap-3 py-8 md:py-10 lg:py-12 px-6 md:px-8 lg:px-10 w-full max-w-2xl mx-auto">
+    <div className="flex items-center gap-3 py-8 md:py-10 lg:py-12 px-6 md:px-8 lg:px-10 w-full max-w-2xl mx-auto relative z-50">
       <input
         type="text"
         placeholder="Search"
