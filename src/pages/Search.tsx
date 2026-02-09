@@ -81,7 +81,7 @@ function Search() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+   <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-slate-50">
       {/* SEARCH SECTION */}
       <section className="relative z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-sm">
         <div className="mt-6 flex justify-center max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-8">
