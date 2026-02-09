@@ -4,7 +4,8 @@ import RecentChanges from "@/components/RecentChanges/RecentChanges";
 
 const Home = () => {
   return (
-    <div className="flex flex-col w-full min-h-screen bg-gradient-to-b from-blue-100 to-white">
+    <div className="flex flex-col w-full min-h-screen bg-gradient-to-b from-amber-50 via-white to-slate-50">
+
       {/* HERO / HEADER */}
       <div
         className="relative w-full h-28 sm:h-32 md:h-36 rounded-b-3xl shadow-lg bg-cover bg-center"
