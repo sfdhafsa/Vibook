@@ -73,7 +73,7 @@ const BookDetails = () => {
 
   if (!id) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white px-6 py-12">
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-slate-50 px-6 py-12">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm text-red-600">No book selected.</p>
         </div>
@@ -82,7 +82,7 @@ const BookDetails = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-white px-4 sm:px-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-white to-slate-50 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
         {loading && (
           <div className="flex justify-center mt-12">
